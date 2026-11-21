@@ -22,7 +22,10 @@ Run it only in a cloud or container session. It installs as root into global npm
   (pypdf, pdfplumber, reportlab, pdf2image, qpdf)
 - Skills (user level, Claude Code only): agent-browser, find-skills, design-taste-frontend,
   mcp-builder, firecrawl, ui-ux-pro-max, systematic-debugging, brainstorming, writing-plans,
-  seo, python-testing
+  seo, python-testing, analytics, attribution, customer-research, competitor-profiling,
+  copy-editing, schema, content-strategy
+- Libraries for the account's pptx / docx skills: python-pptx, python-docx, lxml, defusedxml, pandas,
+  pptxgenjs, react, react-dom, react-icons, sharp
 
 Usage statistics and self-updates are turned off, so a pinned version stays pinned.
 

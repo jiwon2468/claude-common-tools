@@ -45,6 +45,13 @@ timeout 600 python3 -m pip install -q --root-user-action=ignore pypdf==7.1.1 pdf
 { timeout 300 apt-get install -y -qq qpdf ||
   { timeout 300 apt-get update -qq && timeout 300 apt-get install -y -qq qpdf; }; } >/dev/null 2>&1 ||
   echo "setup: qpdf failed"
+# Libraries the claude.ai account's pptx / docx skills call "preinstalled": in this image they sit only
+# in Python 3.13, while python3 is 3.11, and the deck libraries are missing. The skills themselves come
+# from the account, so they are not installed here a second time.
+timeout 600 python3 -m pip install -q --root-user-action=ignore python-pptx==1.0.2 python-docx==1.2.0 \
+  lxml==6.1.3 defusedxml==0.7.1 pandas==3.0.5 || echo "setup: office python libraries failed"
+timeout 600 npm i -g -s pptxgenjs@4.0.1 react@19.3.1 react-dom@19.3.1 react-icons@5.7.0 sharp@0.35.5 ||
+  echo "setup: office node libraries failed"
 # Skills (skills CLI, user-level, Claude Code only), each pinned to a reviewed commit
 add_skill() {
   ( cd "$T" && timeout 300 npx -y skills@1.9.0 add "$1" -g -a claude-code -s "$2" -y >/dev/null ) ||
@@ -64,5 +71,14 @@ add_skill obra/superpowers@22f0b463e7a5e579904dd6211a520321035526f7 writing-plan
 # Two picked skills from ECC (affaan-m/ECC), read in full; the rest of ECC is not installed
 add_skill affaan-m/ECC@4adeee6732a12d1540f49a4d50a38ce8c97f9a53 seo
 add_skill affaan-m/ECC@4adeee6732a12d1540f49a4d50a38ce8c97f9a53 python-testing
+# Seven picked skills from marketingskills; its copywriting, cro and programmatic-seo are left out
+# because projects often keep their own skills under those names
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 analytics
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 attribution
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 customer-research
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 competitor-profiling
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 copy-editing
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 schema
+add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 content-strategy
 rm -rf "$T"
 exit 0
