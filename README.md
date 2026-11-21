@@ -21,7 +21,8 @@ Run it only in a cloud or container session. It installs as root into global npm
 - Programs: Agent-Reach, agent-browser (with its own Chrome), GSD, Firecrawl CLI, PDF tools
   (pypdf, pdfplumber, reportlab, pdf2image, qpdf)
 - Skills (user level, Claude Code only): agent-browser, find-skills, design-taste-frontend,
-  mcp-builder, firecrawl, ui-ux-pro-max, systematic-debugging, brainstorming
+  mcp-builder, firecrawl, ui-ux-pro-max, systematic-debugging, brainstorming, writing-plans,
+  seo, python-testing
 
 Usage statistics and self-updates are turned off, so a pinned version stays pinned.
 
