@@ -80,5 +80,25 @@ add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 copy-editing
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 schema
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 content-strategy
+# Video skills. remotion: Remotion best practices. multimodal-audiocraft: how to run MusicGen / AudioGen
+# (the MusicGen weights are CC-BY-NC, so check the licence before publishing music made with them).
+add_skill davila7/claude-code-templates@5a8853e7f0cbf5173451e329ae073250e6c442ca remotion
+add_skill davila7/claude-code-templates@5a8853e7f0cbf5173451e329ae073250e6c442ca multimodal-audiocraft
+# HyperFrames (HTML rendered to video): nine skills. They run `npx hyperframes`, which is not installed
+# or pinned here, so npx fetches the current CLI on first use. That CLI and the media-use helper scripts
+# send usage statistics, and each skill opens with a usage beacon; the settings file written below turns
+# all of that off (both read it), unless the machine already has a saved preference.
+[ -e "$HOME/.hyperframes/config.json" ] ||
+  { mkdir -p "$HOME/.hyperframes" && echo '{"telemetryEnabled": false}' > "$HOME/.hyperframes/config.json"; } ||
+  echo "setup: hyperframes usage-statistics opt-out failed"
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 hyperframes
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 hyperframes-cli
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 hyperframes-registry
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 media-use
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 remotion-to-hyperframes
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 reverse-any-video
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 slideshow
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 style-sampling
+add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 figma
 rm -rf "$T"
 exit 0
