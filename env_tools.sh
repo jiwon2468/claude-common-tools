@@ -57,5 +57,8 @@ add_skill anthropics/skills@e4bb5d960d87126ff3b3a8af1a104b7db67560ba mcp-builder
 add_skill firecrawl/cli@a9ce64e4d114fd203d8402ca000339d66e902cde firecrawl
 add_skill nextlevelbuilder/ui-ux-pro-max-skill@f76d1653d7467fc11fb9d9d79295a421c92ab958 ui-ux-pro-max
 add_skill obra/superpowers@22f0b463e7a5e579904dd6211a520321035526f7 systematic-debugging
+# brainstorming: its optional visual companion page loads the author's logo (version only) when a browser
+# opens it; set SUPERPOWERS_DISABLE_TELEMETRY=1 where that page is used to skip it
+add_skill obra/superpowers@22f0b463e7a5e579904dd6211a520321035526f7 brainstorming
 rm -rf "$T"
 exit 0
