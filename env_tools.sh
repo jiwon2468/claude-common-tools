@@ -100,5 +100,7 @@ add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 revers
 add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 slideshow
 add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 style-sampling
 add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 figma
+# Content hub design (pillar and cluster pages, internal links, URL structure); text only, no scripts
+add_skill rampstackco/claude-skills@9d281db6e7a5c4a0084ba89c91633a07f5f7e42b pillar-content-architecture
 rm -rf "$T"
 exit 0

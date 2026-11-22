@@ -25,7 +25,7 @@ Run it only in a cloud or container session. It installs as root into global npm
   seo, python-testing, analytics, attribution, customer-research, competitor-profiling,
   copy-editing, schema, content-strategy, remotion, multimodal-audiocraft, hyperframes,
   hyperframes-cli, hyperframes-registry, media-use, remotion-to-hyperframes, reverse-any-video,
-  slideshow, style-sampling, figma
+  slideshow, style-sampling, figma, pillar-content-architecture
 - Libraries for the account's pptx / docx skills: python-pptx, python-docx, lxml, defusedxml, pandas,
   pptxgenjs, react, react-dom, react-icons, sharp
 
