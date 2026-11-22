@@ -89,12 +89,13 @@ add_skills() {
 # The other 43 marketingskills skills, read at the same commit. reverse-engineer-marketing ships a
 # script that fetches a target site and web.archive.org only when run by hand.
 add_skills coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 \
-  ab-testing ad-creative ads ai-seo aso churn-prevention co-marketing cold-email community- \
-  marketing competitors conversion-tracking directory-submissions emails events free-tools \
-  image influencer-marketing launch lead-magnets link-building marketing-council marketing- \
-  ideas marketing-loops marketing-plan marketing-psychology offers onboarding paywalls \
-  popups pricing product-marketing prospecting public-relations referrals reverse-engineer- \
-  marketing revops sales-enablement seo-audit signup site-architecture sms social video
+  ab-testing ad-creative ads ai-seo aso churn-prevention co-marketing cold-email \
+  community-marketing competitors conversion-tracking directory-submissions emails events \
+  free-tools image influencer-marketing launch lead-magnets link-building marketing-council \
+  marketing-ideas marketing-loops marketing-plan marketing-psychology offers onboarding \
+  paywalls popups pricing product-marketing prospecting public-relations referrals \
+  reverse-engineer-marketing revops sales-enablement seo-audit signup site-architecture sms \
+  social video
 # social-media-skills (LinkedIn-first writing and image-prompt skills). reels-scripting sends a video to
 # Apify and Gemini, and post-scorer pulls post history through Apify, only with the user's own keys.
 add_skills charlie947/social-media-skills@10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b \

@@ -26,7 +26,7 @@ Run it only in a cloud or container session. It installs as root into global npm
   copy-editing, schema, content-strategy, remotion, multimodal-audiocraft, hyperframes,
   hyperframes-cli, hyperframes-registry, media-use, remotion-to-hyperframes, reverse-any-video,
   slideshow, style-sampling, figma, pillar-content-architecture, the other 43 marketingskills skills
-  (all except copywriting, cro and programmatic-seo), and the 16 social-media-skills skills
+  (all except copywriting, cro and programmatic-seo), and the 17 social-media-skills skills
 - Libraries for the account's pptx / docx skills: python-pptx, python-docx, lxml, defusedxml, pandas,
   pptxgenjs, react, react-dom, react-icons, sharp
 
