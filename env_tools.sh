@@ -71,8 +71,8 @@ add_skill obra/superpowers@22f0b463e7a5e579904dd6211a520321035526f7 writing-plan
 # Two picked skills from ECC (affaan-m/ECC), read in full; the rest of ECC is not installed
 add_skill affaan-m/ECC@4adeee6732a12d1540f49a4d50a38ce8c97f9a53 seo
 add_skill affaan-m/ECC@4adeee6732a12d1540f49a4d50a38ce8c97f9a53 python-testing
-# Seven picked skills from marketingskills; its copywriting, cro and programmatic-seo are left out
-# because projects often keep their own skills under those names
+# marketingskills: all skills except copywriting, cro and programmatic-seo, which projects often keep
+# under those names. These seven were read first; the rest follow below in one call.
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 analytics
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 attribution
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 customer-research
@@ -80,6 +80,27 @@ add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 copy-editing
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 schema
 add_skill coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 content-strategy
+# Several skills from one repo in one call (names split on spaces)
+add_skills() {
+  r=$1; shift
+  ( cd "$T" && timeout 600 npx -y skills@1.9.0 add "$r" -g -a claude-code -s "$@" -y >/dev/null ) ||
+    echo "setup: skills from $r failed"
+}
+# The other 43 marketingskills skills, read at the same commit. reverse-engineer-marketing ships a
+# script that fetches a target site and web.archive.org only when run by hand.
+add_skills coreyhaines31/marketingskills@5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1 \
+  ab-testing ad-creative ads ai-seo aso churn-prevention co-marketing cold-email community- \
+  marketing competitors conversion-tracking directory-submissions emails events free-tools \
+  image influencer-marketing launch lead-magnets link-building marketing-council marketing- \
+  ideas marketing-loops marketing-plan marketing-psychology offers onboarding paywalls \
+  popups pricing product-marketing prospecting public-relations referrals reverse-engineer- \
+  marketing revops sales-enablement seo-audit signup site-architecture sms social video
+# social-media-skills (LinkedIn-first writing and image-prompt skills). reels-scripting sends a video to
+# Apify and Gemini, and post-scorer pulls post history through Apify, only with the user's own keys.
+add_skills charlie947/social-media-skills@10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b \
+  analytics-dashboard content-matrix gemini-carousel gemini-infographic graphic-designer \
+  hook-generator newsletter-voice niche-research pinned-comment post-formatter post-scorer \
+  post-writer profile-optimizer quote-post reels-scripting voice-builder youtube-thumbnail
 # Video skills. remotion: Remotion best practices. multimodal-audiocraft: how to run MusicGen / AudioGen
 # (the MusicGen weights are CC-BY-NC, so check the licence before publishing music made with them).
 add_skill davila7/claude-code-templates@5a8853e7f0cbf5173451e329ae073250e6c442ca remotion
