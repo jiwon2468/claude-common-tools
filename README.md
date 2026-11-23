@@ -27,6 +27,10 @@ Run it only in a cloud or container session. It installs as root into global npm
   hyperframes-cli, hyperframes-registry, media-use, remotion-to-hyperframes, reverse-any-video,
   slideshow, style-sampling, figma, pillar-content-architecture, the other 43 marketingskills skills
   (all except copywriting, cro and programmatic-seo), and the 17 social-media-skills skills
+- Plugin: humanize-korean from epoko77-ai/im-not-ai (skills and subagents that rewrite Korean text so it
+  stops reading as AI-written), held at a reviewed commit through a local marketplace. It asks before
+  every use: a PreToolUse hook (`~/.claude/hooks/humanize-ask.py`, added to `~/.claude/settings.json`)
+  answers "ask" whenever one of its skills or subagents is called. New hooks load when a session starts.
 - Libraries for the account's pptx / docx skills: python-pptx, python-docx, lxml, defusedxml, pandas,
   pptxgenjs, react, react-dom, react-icons, sharp
 
