@@ -124,5 +124,42 @@ add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 style-
 add_skill heygen-com/hyperframes@a8fe3a5b6844c9f1ae1a4473793eeb11dfcec627 figma
 # Content hub design (pillar and cluster pages, internal links, URL structure); text only, no scripts
 add_skill rampstackco/claude-skills@9d281db6e7a5c4a0084ba89c91633a07f5f7e42b pillar-content-architecture
+# humanize-korean (epoko77-ai/im-not-ai, MIT, v2.4.7): skills and subagents that rewrite Korean text so it
+# stops reading as AI-written. A Claude Code plugin with no hooks and no MCP servers; its scripts only read
+# and write local files. Held at the reviewed commit through a local marketplace (a GitHub marketplace
+# would follow the default branch). Every use asks the user first: the PreToolUse hook written below
+# answers "ask" whenever one of its skills or subagents is called.
+IM="$HOME/.local/share/im-not-ai"
+IM_SHA=c07df14d9f68da482ff5183591808a7d132d4a71
+( { [ -d "$IM/.git" ] || git clone -q https://github.com/epoko77-ai/im-not-ai.git "$IM"; } &&
+  { git -C "$IM" checkout -q "$IM_SHA" 2>/dev/null ||
+    { git -C "$IM" fetch -q origin && git -C "$IM" checkout -q "$IM_SHA"; }; } &&
+  { claude plugin marketplace list 2>/dev/null | grep -qF "$IM" ||
+    timeout 120 claude plugin marketplace add "$IM" >/dev/null; } &&
+  timeout 120 claude plugin install humanize-korean@im-not-ai >/dev/null ) || echo "setup: humanize-korean failed"
+mkdir -p "$HOME/.claude/hooks" && cat > "$HOME/.claude/hooks/humanize-ask.py" <<'PY' &&
+# PreToolUse hook: ask the user before any humanize-korean (im-not-ai) skill or subagent runs.
+import json, re, sys
+tool_input = json.load(sys.stdin).get("tool_input") or {}
+name = str(tool_input.get("skill") or tool_input.get("subagent_type") or "")
+if re.fullmatch(r"(humanize-korean:[a-z-]+|humanize(-scan|-redo|-korean)?"
+                r"|humanize-(diagnostician|monolith|finalizer)|korean-ai-tell-taxonomist"
+                r"|translationese-research-distiller|post-editese-metric-engineer"
+                r"|taxonomy-gap-analyzer|quick-rules-integrator|korean-translation-scholar)", name):
+    print(json.dumps({"hookSpecificOutput": {
+        "hookEventName": "PreToolUse", "permissionDecision": "ask",
+        "permissionDecisionReason": "humanize-korean(im-not-ai)은 쓰기 전에 사용자 확인을 받도록 설정돼 있어요"}},
+        ensure_ascii=False))
+PY
+python3 - "python3 -I $HOME/.claude/hooks/humanize-ask.py" <<'PY' || echo "setup: humanize-korean ask hook failed"
+import json, os, sys
+path, cmd = os.path.expanduser("~/.claude/settings.json"), sys.argv[1]
+settings = json.load(open(path)) if os.path.exists(path) else {}
+pre = settings.setdefault("hooks", {}).setdefault("PreToolUse", [])
+if not any(h.get("command") == cmd for entry in pre for h in entry.get("hooks", [])):
+    pre.append({"matcher": "Skill|Agent", "hooks": [{"type": "command", "command": cmd, "timeout": 10}]})
+    with open(path, "w") as f:
+        json.dump(settings, f, ensure_ascii=False, indent=2)
+PY
 rm -rf "$T"
 exit 0
